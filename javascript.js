@@ -7,3 +7,6 @@ function getComputerChoice() {
 function getHumanChoice() {
     return prompt("Please enter your choice between the following options: (rockrock, paper, scissors)");
 }
+
+let humanScore = 0;
+let computerScore = 0;
