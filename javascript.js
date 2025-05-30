@@ -8,12 +8,27 @@ function getHumanChoice() {
     return prompt("Please enter your choice between the following options: (rockrock, paper, scissors)");
 }
 
+function checkForWin(huumanScore, computerScore) {
+    if (humanScore === 5) {
+        alert('Player Wins! Refresh the page to play again.');
+    }
+    else if (computerScore === 5) {
+        alert('Computer Wins... Refresh the page to play again.');
+    }
+    else {
+        return;
+    }
+}
+
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
     const human = humanChoice.toLowerCase();
     const computer = computerChoice.toLowerCase();
+
+    let scoreLabel = document.querySelector('#score');
+    let resultsList = document.querySelector('#results')
     
     if (human === computer) {
         console.log("You tied!");
@@ -45,8 +60,12 @@ function playRound(humanChoice, computerChoice) {
             result = "You win! Scissors beats Paper";
             humanScore++;
         }
-        console.log(result);
     }
+    let resultItem = document.createElement('li');
+    resultItem.textContent = result;
+    resultsList.appendChild(resultItem);
+    scoreLabel.textContent = `Overall Score: Human - ${humanScore} | Computer - ${computerScore}`
+    checkForWin(humanScore, computerScore);
 }
 
 let buttons = Array.from(document.querySelectorAll("button"));
